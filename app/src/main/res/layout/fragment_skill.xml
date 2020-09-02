@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SkillFragment">
+    tools:context=".skill.SkillFragment">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="314dp"
-        android:layout_height="86dp"
-        android:text="SKILL FRAGMENT"
-        android:textColor="@color/cardview_light_background"
-        android:textSize="36sp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/skill_recyclerView">
+    </androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>
