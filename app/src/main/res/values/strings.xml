@@ -7,4 +7,8 @@
     <string name="skill_img">skill_img</string>
     <string name="phone">phone</string>
     <string name="submit">Submit</string>
+    <string name="error_loading_data_from_heroku">Error Loading data from Heroku</string>
+    <string name="title_size">title</string>
+    <string name="author_size">author</string>
+    <string name="learner_s_name">Learner\'s Name</string>
 </resources>

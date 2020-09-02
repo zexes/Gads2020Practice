@@ -2,12 +2,21 @@ package com.zikozee;
 
 import android.util.Log;
 
+import com.zikozee.learning.Learning;
+import com.zikozee.skill.Skill;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class ApiUtil {
     private ApiUtil(){}
@@ -29,7 +38,7 @@ public class ApiUtil {
     }
 
     public static String getJson(URL url) throws IOException {
-        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+        HttpsURLConnection connection = (HttpsURLConnection)url.openConnection();
 
         try{
             InputStream stream = connection.getInputStream();
@@ -48,5 +57,59 @@ public class ApiUtil {
             connection.disconnect();
         }
 
+    }
+
+    public static ArrayList<Skill> getSkillFromJson(String json){
+        final String NAME = "name";
+        final String SCORE = "score";
+        final String COUNTRY = "country";
+        final String URL = "badgeUrl";
+
+        ArrayList<Skill> skills = new ArrayList<>();
+
+        try{
+//            JSONObject jsonSkills = new JSONObject(json);
+            JSONArray arraySKills = new JSONArray(json);
+            int numberOfSkills = arraySKills.length();
+
+            for(int i=0; i< numberOfSkills; i++){
+                JSONObject skillJSON = arraySKills.getJSONObject(i);
+                Skill skill = new Skill(skillJSON.getString(NAME), skillJSON.getInt(SCORE),
+                        skillJSON.getString(COUNTRY), skillJSON.getString(URL));
+
+                skills.add(skill);
+            }
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        return skills;
+    }
+
+    public static ArrayList<Learning> getLearningFromJson(String json){
+        final String NAME = "name";
+        final String HOURS = "hours";
+        final String COUNTRY = "country";
+        final String URL = "badgeUrl";
+
+        ArrayList<Learning> learnings = new ArrayList<>();
+
+        try{
+//            JSONObject jsonSkills = new JSONObject(json);
+            JSONArray arrayLearning = new JSONArray(json);
+            int numberOfSkills = arrayLearning.length();
+
+            for(int i=0; i< numberOfSkills; i++){
+                JSONObject LearningJSON = arrayLearning.getJSONObject(i);
+                Learning learning = new Learning(LearningJSON.getString(NAME), LearningJSON.getInt(HOURS),
+                        LearningJSON.getString(COUNTRY), LearningJSON.getString(URL));
+
+                learnings.add(learning);
+            }
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        return learnings;
     }
 }
