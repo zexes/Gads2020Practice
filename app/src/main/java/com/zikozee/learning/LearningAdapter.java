@@ -8,11 +8,13 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
 import com.zikozee.Contact;
 import com.zikozee.R;
 import com.zikozee.RecyclerViewAdapter;
@@ -52,18 +54,25 @@ public class LearningAdapter extends RecyclerView.Adapter<LearningAdapter.Learni
 
         TextView name;
         TextView score;
+        ImageView imageView;
 
         public LearningViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.learner_id);
             score = itemView.findViewById(R.id.learner_score_id);
+            imageView = itemView.findViewById(R.id.img_learning);
         }
 
         @SuppressLint("SetTextI18n")
         public void bind(Learning learning){
             name.setText(learning.getName());
             score.setText(learning.getHours() +" learning hours, " + learning.getCountry());
+            Picasso.get().setLoggingEnabled(true);
+            Picasso.get()
+                    .load(learning.getUrl())
+                    .placeholder(R.drawable.ic_baseline_outlined_flag_24)
+                    .into(imageView);
         }
     }
 }
