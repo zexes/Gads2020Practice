@@ -44,7 +44,6 @@ public class LeaderBoard extends AppCompatActivity {
         // Add Fragments Here
         viewPagerAdapter.AddFragment(new LearningFragment(), "Learning Leaders");
         viewPagerAdapter.AddFragment(new SkillFragment(), "Skill IQ Leaders");
-        viewPagerAdapter.AddFragment(new ContactFragment(), "Making Calls");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 

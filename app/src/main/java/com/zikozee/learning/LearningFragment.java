@@ -1,5 +1,6 @@
 package com.zikozee.learning;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -42,7 +43,8 @@ public class LearningFragment extends Fragment {
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_learning, container, false);
         // Inflate the layout for this fragment
-        mLoadingProgress = v.findViewById(R.id.pb_loading);
+        Context context = container.getContext();
+        mLoadingProgress = v.findViewById(R.id.pb_loading_learning);
         mLoadingProgress.setVisibility(View.VISIBLE);
 
         myRecyclerView = v.findViewById(R.id.learning_recyclerview);
@@ -60,11 +62,6 @@ public class LearningFragment extends Fragment {
         return v;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
 
     public class LearningQueryTask extends AsyncTask<URL, Void, String> {
@@ -91,7 +88,7 @@ public class LearningFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
 //            TextView tvResult = v.findViewById(R.id.dummyText);
-            TextView error = v.findViewById(R.id.error);
+            TextView error = v.findViewById(R.id.error_learning);
             mLoadingProgress.setVisibility(View.GONE);
             if(error == null){
                 myRecyclerView.setVisibility(View.INVISIBLE);

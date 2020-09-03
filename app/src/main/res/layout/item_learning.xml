@@ -26,7 +26,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="35"
-                app:srcCompat="@drawable/skill"
+                app:srcCompat="@drawable/ic_baseline_outlined_flag_24"
+                android:layout_gravity="center"
                 android:paddingEnd="10dp"
                 android:paddingStart="15dp"
                 android:contentDescription="@string/skill_img" />
