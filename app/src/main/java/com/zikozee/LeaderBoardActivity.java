@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Window;
 import android.view.WindowManager;
 import androidx.appcompat.widget.Toolbar;
 
@@ -14,23 +15,26 @@ import com.google.android.material.tabs.TabLayout;
 import com.zikozee.learning.LearningFragment;
 import com.zikozee.skill.SkillFragment;
 
-public class LeaderBoard extends AppCompatActivity {
+public class LeaderBoardActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(1);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//        requestWindowFeature(1);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        getWindow().setStatusBarColor(Color.TRANSPARENT);
 
         setContentView(R.layout.activity_leaderboard);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window w = getWindow();
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
 
         //Toolbar
         mToolbar = findViewById(R.id.customToolBar);

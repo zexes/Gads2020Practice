@@ -1,8 +1,10 @@
 package com.zikozee;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
@@ -10,9 +12,16 @@ import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity {
 
+//    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(1);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+//        getWindow().setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_main);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow();
@@ -29,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                         waitingTime = waitingTime + 100;
 
                     }
-                    Intent intent = new Intent(MainActivity.this, LeaderBoard.class);
+                    Intent intent = new Intent(MainActivity.this, LeaderBoardActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
 
