@@ -3,17 +3,12 @@ package com.zikozee;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -48,12 +43,9 @@ public class SubmissionActivity extends AppCompatActivity {
 
         ImageView imageView = findViewById(R.id.back_button);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(view.getId() == R.id.back_button){
-                    startActivity(new Intent(SubmissionActivity.this, LeaderBoardActivity.class));
-                }
+        imageView.setOnClickListener(view -> {
+            if(view.getId() == R.id.back_button){
+                startActivity(new Intent(SubmissionActivity.this, LeaderBoardActivity.class));
             }
         });
 
@@ -63,14 +55,8 @@ public class SubmissionActivity extends AppCompatActivity {
         projectLink = findViewById(R.id.project_link);
         submit = findViewById(R.id.submit_project);
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO are you sure= YES should wrap the guy below else quit
-//                successDialog(SubmissionActivity.this);
-                confirmation();
-//                click();
-            }
+        submit.setOnClickListener(view -> {
+            confirmation();
         });
 
     }
@@ -95,13 +81,9 @@ public class SubmissionActivity extends AppCompatActivity {
         new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                 .setTitleText("Are you sure ?")
                 .setConfirmButtonBackgroundColor(Color.rgb(250, 162, 43))
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-//                        Toast.makeText(SubmissionActivity.this, "Executing Click", Toast.LENGTH_SHORT).show();
-                        click();
-                        sweetAlertDialog.dismissWithAnimation();
-                    }
+                .setConfirmClickListener(sweetAlertDialog -> {
+                    click();
+                    sweetAlertDialog.dismissWithAnimation();
                 }).show();
     }
 
