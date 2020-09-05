@@ -8,7 +8,9 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:paddingStart="35dp"
     android:paddingEnd="13dp"
-    app:title="@string/app_name">
+    app:title="@string/app_name"
+    android:paddingLeft="35dp"
+    android:paddingRight="13dp">
 
 
     <Button
@@ -21,6 +23,7 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         android:minHeight="0dp"
+        android:id="@+id/submit"
         />
 
 
